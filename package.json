@@ -1,0 +1,15 @@
+{
+  "name": "coding_challenge",
+  "version": "1.0.0",
+  "description": "coding challenge for cogent",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "author": "Thomas Proust",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^9.0.1",
+    "jest": "^26.6.3"
+  }
+}
