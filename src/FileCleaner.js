@@ -45,6 +45,19 @@ class FileCleaner {
                 : this.singles.set(content, [...paths]);
         }
     }
+
+    logDuplicates() {
+        for (const [content, paths] of [...this.multis.entries()]) {
+            console.log('==============================');
+            console.log(
+                `The following content ${content.toString(
+                    'utf-8'
+                )} has been bound at the following locations:`
+            );
+            paths.forEach((p) => console.log(p));
+            console.log('==============================');
+        }
+    }
 }
 
 module.exports = FileCleaner;

@@ -150,4 +150,39 @@ describe('file cleaner', () => {
             expect(fc.multis).toEqual(expected);
         });
     });
+
+    describe('log duplicates', () => {
+        beforeEach(() => {
+            fs.emptyDirSync(path);
+
+            fs.writeFileSync(path + '/file1', 'content1');
+            fs.writeFileSync(path + '/file2', 'content2');
+            fs.mkdirSync(path + '/n1');
+            fs.mkdirSync(path + '/n2');
+            fs.writeFileSync(path + '/n1/file1', 'content3');
+            fs.mkdirSync(path + '/n1a');
+            fs.writeFileSync(path + '/n1a/file1', 'content4');
+            fs.writeFileSync(path + '/n1a/file2', 'content5');
+            fs.mkdirSync(path + '/n1/n2');
+            fs.writeFileSync(path + '/n1/n2/file1', 'content6');
+            fs.writeFileSync(path + '/n1/n2/file2', 'content7');
+        });
+
+        afterEach(() => {
+            fs.emptyDirSync(path);
+        });
+        it('should log the duplicated files with the common content', async () => {
+            fs.writeFileSync(path + '/file3', 'content7');
+            fs.writeFileSync(path + '/n1a/file3', 'content6');
+            fs.mkdirSync(path + '/n1/n2/n3');
+            fs.writeFileSync(path + '/n1/n2/n3/file1', 'content5');
+            console.log = jest.fn();
+            const fc = await FileCleaner.build(path);
+            fc.scanForDuplicates();
+
+            fc.logDuplicates();
+
+            expect(console.log).toHaveBeenCalledTimes(15);
+        });
+    });
 });
