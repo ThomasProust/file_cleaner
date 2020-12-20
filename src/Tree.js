@@ -7,7 +7,11 @@ class Node {
     }
 
     add(data) {
-        this.children.push(...data);
+        if (Array.isArray(data)) {
+            this.children.push(...data);
+        } else {
+            this.children.push(data);
+        }
     }
 }
 

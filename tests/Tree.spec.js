@@ -80,11 +80,11 @@ describe('Tree', () => {
             const letters = [];
             const t = new Tree();
             t.root = new Node('a');
-            t.root.add('b');
-            t.root.add('c');
-            t.root.children[0].add('d');
+            t.root.add(new Node('b'));
+            t.root.add(new Node('c'));
+            t.root.children[0].add(new Node('d'));
 
-            t.traverseBF((node) => {
+            t.traverseBf((node) => {
                 letters.push(node.data);
             });
 
