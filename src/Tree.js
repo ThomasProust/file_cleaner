@@ -42,7 +42,7 @@ class Tree {
                 const content = fs.readFileSync(path + '/' + elt.name);
                 const existingKey = [...data.keys()].find((k) => k.equals(content));
                 if (data.has(existingKey)) {
-                    const existingPaths = ref.get(existingKey);
+                    const existingPaths = data.get(existingKey);
                     data.set(existingKey, [...existingPaths, path + '/' + elt.name]);
                 } else {
                     data.set(content, [path + '/' + elt.name]);
