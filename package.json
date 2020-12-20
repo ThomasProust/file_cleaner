@@ -4,7 +4,8 @@
   "description": "coding challenge for cogent",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll"
+    "test": "jest",
+    "test:dev": "jest --watchAll"
   },
   "author": "Thomas Proust",
   "license": "ISC",
