@@ -58,11 +58,11 @@ class Tree {
         this.root = null;
     }
 
-    traverseBf(fn) {
+    traverseDf(fn) {
         const arr = [this.root];
         while (arr.length) {
             const node = arr.shift();
-            arr.push(...node.children);
+            arr.unshift(...node.children);
             fn(node);
         }
     }

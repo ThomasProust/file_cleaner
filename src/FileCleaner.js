@@ -13,7 +13,7 @@ class FileCleaner {
     }
 
     scanForDuplicates() {
-        this.tree.traverseBf(this.findDuplicatesFromNode.bind(this));
+        this.tree.traverseDf(this.findDuplicatesFromNode.bind(this));
     }
 
     findDuplicatesFromNode(n) {
@@ -35,7 +35,6 @@ class FileCleaner {
             if (fromSingleContent) {
                 const existingPaths = this.singles.get(fromSingleContent);
                 this.multis.set(content, [...existingPaths, ...paths]);
-
                 this.singles.delete(fromSingleContent);
                 continue;
             }

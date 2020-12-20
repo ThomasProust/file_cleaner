@@ -141,7 +141,7 @@ describe('file cleaner', () => {
             fs.writeFileSync(path + '/n1a/file3', 'content6');
             const expected = new Map([
                 [Buffer.from('content7'), [path + '/file3', path + '/n1/n2/file2']],
-                [Buffer.from('content6'), [path + '/n1a/file3', path + '/n1/n2/file1']],
+                [Buffer.from('content6'), [path + '/n1/n2/file1', path + '/n1a/file3']],
             ]);
             const fc = await FileCleaner.build(path);
 

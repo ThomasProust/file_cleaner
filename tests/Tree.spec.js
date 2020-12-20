@@ -84,11 +84,11 @@ describe('Tree', () => {
             t.root.add(new Node('c'));
             t.root.children[0].add(new Node('d'));
 
-            t.traverseBf((node) => {
+            t.traverseDf((node) => {
                 letters.push(node.data);
             });
 
-            expect(letters).toEqual(['a', 'b', 'c', 'd']);
+            expect(letters).toEqual(['a', 'b', 'd', 'c']);
         });
     });
 });
