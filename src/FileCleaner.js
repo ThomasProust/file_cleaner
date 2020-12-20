@@ -47,12 +47,15 @@ class FileCleaner {
     }
 
     logDuplicates() {
+        if (!this.multis.size) {
+            console.log('no duplicated file found');
+        }
         for (const [content, paths] of [...this.multis.entries()]) {
             console.log('==============================');
             console.log(
                 `The following content ${content.toString(
                     'utf-8'
-                )} has been bound at the following locations:`
+                )} has been found at the following locations:`
             );
             paths.forEach((p) => console.log(p));
             console.log('==============================');
