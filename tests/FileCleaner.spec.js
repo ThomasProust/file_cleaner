@@ -24,7 +24,6 @@ describe('file cleaner', () => {
     });
 
     it('should create an instance with a built tree', async () => {
-        const fc = await FileCleaner.build(path);
         const rootNode = new Node(
             new Map([
                 [Buffer.from('content1'), [path + '/file1']],
@@ -34,6 +33,8 @@ describe('file cleaner', () => {
         rootNode.add([new Node(new Map()), new Node(new Map())]);
         const expected = new Tree();
         expected.root = rootNode;
+
+        const fc = await FileCleaner.build(path);
 
         expect(fc.tree).toEqual(expected);
     });
