@@ -40,8 +40,8 @@ describe('file cleaner', () => {
 
     describe('scan node for duplicates', () => {
         it('should not find any duplicates if contents are different', async () => {
-            expectedMultis = new Map();
-            expectedSingles = new Map([
+            const expectedMultis = new Map();
+            const expectedSingles = new Map([
                 [Buffer.from('content1'), [path + '/file1']],
                 [Buffer.from('content2'), [path + '/file2']],
             ]);
@@ -54,10 +54,10 @@ describe('file cleaner', () => {
         });
 
         it('should find duplicates when there are files with matching content in the same repository', async () => {
-            expectedMultis = new Map([
+            const expectedMultis = new Map([
                 [Buffer.from('content1'), [path + '/file3', path + '/file1']],
             ]);
-            expectedSingles = new Map([[Buffer.from('content2'), [path + '/file2']]]);
+            const expectedSingles = new Map([[Buffer.from('content2'), [path + '/file2']]]);
             fs.writeFileSync(path + '/file3', 'content1');
             const fc = await FileCleaner.build(path);
 
@@ -68,10 +68,10 @@ describe('file cleaner', () => {
         });
 
         it('should add duplicates to already existing ones', async () => {
-            expectedMultis = new Map([
+            const expectedMultis = new Map([
                 [Buffer.from('content1'), [path + '/file4', path + '/file3', path + '/file1']],
             ]);
-            expectedSingles = new Map([[Buffer.from('content2'), [path + '/file2']]]);
+            const expectedSingles = new Map([[Buffer.from('content2'), [path + '/file2']]]);
             fs.writeFileSync(path + '/file3', 'content1');
             const fc = await FileCleaner.build(path);
             fc.multis.set(Buffer.from('content1'), [path + '/file4']);
@@ -83,10 +83,10 @@ describe('file cleaner', () => {
         });
 
         it('should remove duplicates from singles and add them to multis', async () => {
-            expectedMultis = new Map([
+            const expectedMultis = new Map([
                 [Buffer.from('content1'), [path + '/file3', path + '/file1']],
             ]);
-            expectedSingles = new Map([[Buffer.from('content2'), [path + '/file2']]]);
+            const expectedSingles = new Map([[Buffer.from('content2'), [path + '/file2']]]);
             const fc = await FileCleaner.build(path);
             fc.singles.set(Buffer.from('content1'), [path + '/file3']);
 
@@ -118,8 +118,8 @@ describe('file cleaner', () => {
             fs.emptyDirSync(path);
         });
         it('should not find any duplicate if no matching content', async () => {
-            expectedMultis = new Map();
-            expectedSingles = new Map([
+            const expectedMultis = new Map();
+            const expectedSingles = new Map([
                 [Buffer.from('content1'), [path + '/file1']],
                 [Buffer.from('content2'), [path + '/file2']],
                 [Buffer.from('content3'), [path + '/n1/file1']],

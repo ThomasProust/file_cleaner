@@ -47,7 +47,8 @@ class Tree {
                 } else {
                     data.set(content, [path + '/' + elt.name]);
                 }
-            } else {
+            }
+            if (elt.isDirectory()) {
                 dirs.push(elt.name);
             }
         }

@@ -8,4 +8,4 @@ const main = async () => {
     fc.logDuplicates();
 };
 
-main();
+main().catch((e) => console.error(e.message));

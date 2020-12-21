@@ -24,7 +24,6 @@ class FileCleaner {
             if (!paths.length) continue;
 
             const fromMultiContent = mKeys.find((k) => k.equals(content));
-
             if (fromMultiContent) {
                 const existingPaths = this.multis.get(fromMultiContent);
                 this.multis.set(fromMultiContent, [...existingPaths, ...paths]);
@@ -53,7 +52,7 @@ class FileCleaner {
             console.log('==============================');
             console.log(
                 `The following content ${content.toString(
-                    'utf-8'
+                    'base64'
                 )} has been found at the following locations:`
             );
             paths.forEach((p) => console.log(p));
